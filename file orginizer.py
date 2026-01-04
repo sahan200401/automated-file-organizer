@@ -43,12 +43,13 @@ def file_finding():
 
             elif os.path.isdir(full_path):
                 print()
-        return files
+        return files,folder_path
     else:
         print("file not found! ")
         return []
 
-def finding_extension(files):
+
+def finding_extension(files,folder_path):
     extension_list = []
     for item in files:
         file_name,extension = os.path.splitext(item)
@@ -59,5 +60,5 @@ def finding_extension(files):
 
 
 
-x = file_finding()
-print(finding_extension(x))
+x,folder_path = file_finding()
+print(finding_extension(x,folder_path))
