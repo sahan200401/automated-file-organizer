@@ -25,6 +25,8 @@ def finding_extension(item):
     os.path.splitext(item)
 '''
 
+import shutil
+
 def file_finding():
     folder_path = input("enter the folder path..")
 
@@ -72,6 +74,20 @@ def find_Category(extension):
             return  category
 
     return "other"
+
+
+def organize_files(files,folder_path):
+    for file in files:
+        sourch_path = os.path.join(folder_path,file)
+        _,extension = os.path.splitext(file)
+        category = find_Category(extension)
+
+        category_path = os.path.join(folder_path,category)
+        if not os.path.exists(category_path):
+            os.mkdir(category_path)
+
+        destination_path = os.path.join(category_path, file)
+        shutil.move(source_path, destination_path)
 
 
 files, folder_path = file_finding()
