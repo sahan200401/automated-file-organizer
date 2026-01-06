@@ -59,6 +59,23 @@ def finding_extension(files,folder_path):
     return list(set(extension_list))
 
 
+def find_Category(extension):
+    categories = {
+        "Images": [".jpg", ".png", ".jpeg"],
+        "Documents": [".pdf", ".txt", ".docx"],
+        "Videos": [".mp4", ".mkv"],
+        "Code": [".py", ".java", ".js"]
+    }
 
-x,folder_path = file_finding()
-print(finding_extension(x,folder_path))
+    for category,ext_lst in categories.items():
+        if extension.lower() in ext_lst:
+            return  category
+
+    return "other"
+
+
+files, folder_path = file_finding()
+if files:
+    print(f"Extensions found: {finding_extension(files, folder_path)}")
+    for ext in finding_extension(files, folder_path):
+        print(f"{ext} → {find_Category(ext)}")
