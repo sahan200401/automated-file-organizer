@@ -1,31 +1,5 @@
-import os
-'''
-folder_path = input("enter the folder path.. ")
-
-if os.path.exists(folder_path) and os.path.isdir(folder_path):
-    print("folder found...")
-
-    items = os.listdir(folder_path)
-    print("printing the item in that folder...")
-
-    for item in items:
-        full_path = os.path.join(folder_path, item)
-
-        if os.path.isfile(full_path):
-            print(item)
-
-        elif os.path.isdir(full_path):
-            print("item is folder")
-
-else:
-    print("folder not found!  ")
-
-
-def finding_extension(item):
-    os.path.splitext(item)
-'''
-
 import shutil
+import  os
 
 def file_finding():
     folder_path = input("enter the folder path..")
@@ -78,7 +52,7 @@ def find_Category(extension):
 
 def organize_files(files,folder_path):
     for file in files:
-        sourch_path = os.path.join(folder_path,file)
+        source_path = os.path.join(folder_path,file)
         _,extension = os.path.splitext(file)
         category = find_Category(extension)
 
@@ -93,5 +67,11 @@ def organize_files(files,folder_path):
 files, folder_path = file_finding()
 if files:
     print(f"Extensions found: {finding_extension(files, folder_path)}")
+
+    # Print category mapping
     for ext in finding_extension(files, folder_path):
         print(f"{ext} → {find_Category(ext)}")
+
+    # Organize files
+    organize_files(files, folder_path)
+    print("Files organized successfully!")
